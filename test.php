@@ -1,7 +1,8 @@
 <?php 
 echo "<h1>Hello Welcome to the php world!</h1>";
-$a1=array("a"=>"red","b"=>"green","c"=>"pink","d"=>"yellow");
+$a1=array("a"=>"red","b"=>"green","c"=>"blue","d"=>"yellow");
 $a2=array("e"=>"red","f"=>"green","g"=>"blue");
+$a3=array("a"=>"red","b"=>"green","c"=>"blue");
 
 $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
 $fname=array("Peter","Ben","Joe");
@@ -44,6 +45,14 @@ print_r(array_diff($a1,$a2));
 echo "<br><br>for the diff with key and value with array_diff_assoc <br>";
 print_r(array_diff_assoc($a1,$a2));
 
+echo "<br><br>for the compare with the value only array_intersect()<br>";
+print_r(array_intersect($a1,$a2));
+
+echo "<br><br>for the compare with the key and value array_intersect_assoc()<br>";
+print_r(array_intersect_assoc($a1,$a3));
+
+echo"<br><br>for the compare key of the array with array_intersect_key() <br>";
+print_r(array_intersect_key($a1,$a3));
 
 
 
