@@ -53,6 +53,22 @@ print_r(array_intersect_assoc($a1,$a3));
 
 echo"<br><br>for the compare key of the array with array_intersect_key() <br>";
 print_r(array_intersect_key($a1,$a3));
+echo "<br>";
+
+echo "<br> file read with the readFile <br>";
+$myfile =  readfile('text.txt');
+
+// echo "<br>";
+// echo "<br>file read with the fopen<br><br>";
+// $myfile = fopen("text.txt");
+// echo "$myfile";
+// fclose($myfile);
+
+$numArray = array(-12,11,-13,-5,6,-7,5,-3,-6);
+$sortedArray = array_multisort($numArray,SORT_DESC,SORT_NUMERIC);
+print_r($sortedArray);
+
+
 
 
 
