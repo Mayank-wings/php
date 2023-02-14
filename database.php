@@ -4,9 +4,27 @@ $username = "mayank";
 $password = "wings123";
 $dbname = "Wings";
 
+class TableRows extends RecursiveIteratorIterator {
+  function __construct($it) {
+    parent::__construct($it, self::LEAVES_ONLY);
+  }
+
+  function current() {
+    return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
+  }
+
+  function beginChildren() {
+    echo "<tr>";
+  }
+
+  function endChildren() {
+    echo "</tr>" . "\n";
+  }
+}
+
 
 echo "<table style='border: solid 1px black;'>";
-echo "<tr><th style='margin-right:15px;'>Id</th><th>Firstname</th><th>Lastname</th></tr>";
+echo "<tr><th style=''>Id</th><th>Firstname</th><th>Lastname</th></tr>";
 
 // phpinfo()
 // for the pdo
@@ -25,12 +43,19 @@ try {
     // $sql = "INSERT INTO Employee(firstname, lastname, email) 
     //         VALUES ('Test','Testing','test@gmail.com')";
 
+    // $sql= "SELECT * FROM Employee WHERE firstname='MAYANK'";
     $sql= "SELECT * FROM Employee";
 
       try {
         //code...
-        $result = $conn->exec($sql);
-        echo "$result<br>";
+        $stmt = $conn->prepare($sql);
+        $stmt-> execute();
+
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        //  echo "$result<br>";
+        foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+          echo $v;
+        }
         // print_r($result);
         //  echo "Employee Table VALUES Added...!<br>";
       } catch (\Throwable $th) {
